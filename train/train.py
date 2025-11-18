@@ -17,7 +17,7 @@ from copy import deepcopy
 from monai.data import DataLoader
 from generative.networks.nets import VQVAE
 from monai.transforms import Compose, Lambdad, ScaleIntensityRanged, RandAffined
-from inference_utils_mix import denoise_batch, plot_triplets
+from inference_utils import denoise_batch, plot_triplets
 
 
 ## Reproducibility Setup
@@ -59,10 +59,10 @@ psz = args.patch_size
 
 training_start = datetime.now().strftime("%m%d_%H%M")  
 
-model_dir = f"/home/hpc/iwi5/iwi5220h/DiTArtifactsRemoval/checkpoints/ep{epoch}_bsz{bsz}_{training_start}"
+model_dir = f"/train/checkpoints/ep{epoch}_bsz{bsz}_{training_start}"
 os.makedirs(model_dir, exist_ok=True)
 
-log_path = f"/home/hpc/iwi5/iwi5220h/DiTArtifactsRemoval/checkpoints/trainlog_ep{epoch}_{training_start}.txt"
+log_path = f"/train/checkpoints/trainlog_ep{epoch}_{training_start}.txt"
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
 ## Model config
@@ -129,7 +129,7 @@ train_transforms = Compose(
     ]   
     )
 
-data_dir = '/home/hpc/iwi5/iwi5220h/diffct/data/train'      
+data_dir = '/data/train'      
 num_vis_samples = 4 
 full_dataset = PairedInputDataset(data_dir, train_transforms)                                                
 train_size = int(0.8 * len(full_dataset))
