@@ -214,8 +214,8 @@ def select_val_vis_samples(dataset, labels_to_find=[1,2,3,4]):
 
 
 def main(train_flag):
-    data_dir = '/root_dir/diffct/data/train' 
-    output_dir = '/root_dir/data/pix2pix_checkpoint/'
+    data_dir = '/root_dir/data/diffct/data/train' 
+    output_dir = '/root_dir/train/pix2pix_checkpoint/'
     epochs = 550
     batch_size = 8
     lr = 1e-4
