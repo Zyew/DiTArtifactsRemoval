@@ -1,0 +1,23 @@
+# Core dependencies
+
+torch
+torchvision
+torchaudio
+diffusers
+transformers
+monai
+monai-generative
+pydicom
+SimpleITK
+numpy
+scipy
+scikit-image
+opencv-python
+pillow
+piq
+matplotlib
+tqdm
+PyYAML
+pandas
+einops
+diffct
