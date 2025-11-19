@@ -25,7 +25,6 @@ def visualize_fixed_slices(model, root_dir, save_path, device, use_middle_slice=
     transform = Compose([
         Lambdad(keys=["image"], func=lambda x: x[None, ...]),
         ScaleIntensityRanged(keys=["image"], a_min=0.0, a_max=1.0, b_min=0.0, b_max=1.0, clip=True),
-
     ])
 
     input_images = []
@@ -93,8 +92,8 @@ image_size = 512
 batch_size = 16
 root_dir = "/home/hpc/iwi5/iwi5220h/diffct/data/train"
 val_interval = 5
-n_epochs = 100
-save_dir = "./vqvae_with_perceptual"
+n_epochs = 200
+save_dir = "/root_dir/train/vqvae_with_perceptual"
 os.makedirs(save_dir, exist_ok=True)
 epoch_recon_loss_list = []
 epoch_quant_loss_list = []
