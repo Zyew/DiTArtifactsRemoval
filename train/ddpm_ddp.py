@@ -25,7 +25,7 @@ from diffusers import UNet2DModel, DDIMScheduler
 
 ## Reproducibility Setup
 parser = ArgumentParser()
-parser.add_argument("--epoch", type=int, default=1000)
+parser.add_argument("--epoch", type=int, default=550)
 parser.add_argument("--train_timesteps_number", type=int, default=1000)
 parser.add_argument("--learning_rate", type=float, default=1e-4)
 parser.add_argument("--batch_size", type=int, default=4)
@@ -62,10 +62,10 @@ psz = args.patch_size
 
 training_start = datetime.now().strftime("%m%d_%H%M")  
 
-model_dir = f"/home/hpc/iwi5/iwi5220h/DiTArtifactsRemoval/ddpm_checkpoints/ep{epoch}_bsz{bsz}_{training_start}"
+model_dir = f"/root_dir/ddpm_checkpoints/ep{epoch}_bsz{bsz}_{training_start}"
 os.makedirs(model_dir, exist_ok=True)
 
-log_path = f"/home/hpc/iwi5/iwi5220h/DiTArtifactsRemoval/ddpm_checkpoints/trainlog_ep{epoch}_{training_start}.txt"
+log_path = f"/root_dir/ddpm_checkpoints/trainlog_ep{epoch}_{training_start}.txt"
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
 ## Model config
@@ -121,11 +121,11 @@ requires_grad(ema, False)
 model = DDP(model.to(device), device_ids=[local_rank])
 
 # Load pretrained vqvae
-with open("./vqvae_with_perceptual/vqvae_config.json", "r") as f:
+with open("./data/vqvae_with_perceptual/vqvae_config.json", "r") as f:
     config = json.load(f)
 
 vae = VQVAE(**config)
-vae.load_state_dict(torch.load("./vqvae_with_perceptual/best_vqvae.pth", map_location=device))
+vae.load_state_dict(torch.load("./data/vqvae_with_perceptual/best_vqvae.pth", map_location=device))
 vae = vae.to(device)
 vae.requires_grad_(False)
 vae.eval()
@@ -143,7 +143,7 @@ train_transforms = Compose(
     ]   
     )
 
-data_dir = '/home/hpc/iwi5/iwi5220h/diffct/data/train'      
+data_dir = '/root_dir/diffct/data/train'      
 num_vis_samples = 4 
 full_dataset = PairedInputDataset(data_dir, train_transforms)                                                
 train_size = int(0.8 * len(full_dataset))
@@ -227,7 +227,7 @@ update_ema(ema, model.module, decay=0)
 model.train() 
 ema.eval()
 
-print("start training...")
+print("start training")
 for epoch_i in range(1, epoch + 1):
     train_sampler.set_epoch(epoch_i)
     start_time = time()
@@ -249,7 +249,6 @@ for epoch_i in range(1, epoch + 1):
         model_input = torch.cat([noisy_images, z_cond], dim=1)  
 
         with torch.amp.autocast(device_type='cuda', dtype=torch.bfloat16):
-        #with torch.amp.autocast(device_type='cuda', dtype=torch.float16):
             noise_pred = model(model_input, timestep=timesteps, class_labels=class_labels).sample
             loss = F.mse_loss(noise_pred, noise)
         
