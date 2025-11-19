@@ -8,6 +8,8 @@ from skimage.metrics import peak_signal_noise_ratio as psnr
 from monai.data import DataLoader
 from monai.transforms import Compose, Lambdad, EnsureChannelFirstd, ScaleIntensityRanged, RandAffined
 from PairedInputDataset import PairedInputDataset
+
+
 # Set random seed
 seed = 2025
 random.seed(seed)
@@ -15,7 +17,6 @@ np.random.seed(seed)
 torch.manual_seed(seed)
 torch.cuda.manual_seed_all(seed)
 
-    
 class UNetGenerator(nn.Module):
     def __init__(self, in_channels=1, out_channels=1):
         super(UNetGenerator, self).__init__()
@@ -213,9 +214,9 @@ def select_val_vis_samples(dataset, labels_to_find=[1,2,3,4]):
 
 
 def main(train_flag):
-    data_dir = '/home/hpc/iwi5/iwi5220h/diffct/data/train' 
+    data_dir = 'root_dir/diffct/data/train' 
     output_dir = 'pix2pix_checkpoint/'
-    epochs = 1000
+    epochs = 550
     batch_size = 8
     lr = 1e-4
     beta1 = 0.5 
