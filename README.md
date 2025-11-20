@@ -31,3 +31,13 @@ DiTArtifactsRemoval/
 ├── README.md                                # README
 ├── requirements.txt                         # Python dependencies
 ├── .gitignore                               # Files/folders to ignore (e.g., dataset, checkpoints, cache)
+```
+
+## Quick Start
+### Install Dependencies
+```markdown
+git clone https://github.com/Zyew/DiTArtifactsRemoval.git
+cd DiTArtifactsRemoval
+# Install required packages
+pip install -r requirements.txt
+```
