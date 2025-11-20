@@ -48,4 +48,6 @@ conda activate DiT
 ```
 
 ## Acknowledgements
-This project leverages [DiTTransformer2DModel](https://huggingface.co/docs/diffusers/v0.35.1/en/api/models/dit_transformer2d#diffusers.DiTTransformer2DModel) for artifact removal, [DiffCT](https://github.com/sypsyp97/diffct) for differentiable CT artifact simulation and reconstruction, and [[PYRO-NN](https://github.com/csyben/PYRO-NN) for neural network-based tomographic reconstruction.
+This project leverages 
+[DiTTransformer2DModel](https://huggingface.co/docs/diffusers/v0.35.1/en/api/models/dit_transformer2d#diffusers.DiTTransformer2DModel) for artifact removal, 
+[DiffCT](https://github.com/sypsyp97/diffct) for differentiable CT artifact simulation and reconstruction.
