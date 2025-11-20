@@ -1,0 +1,15 @@
+name: diffct
+channels:
+  - conda-forge
+  - nvidia
+dependencies:
+  - python=3.10
+  - cudatoolkit=12.2
+  - cuda-nvcc=12.2
+  - cmake
+  - pip
+  - pip:
+      - diffct
+      - numpy
+      - tqdm
+      - matplotlib
