@@ -33,11 +33,16 @@ DiTArtifactsRemoval/
 ├── .gitignore                               # Files/folders to ignore (e.g., dataset, checkpoints, cache)
 ```
 
-## Quick Start
-### Install Dependencies
+## Install Dependencies
+This project requires two separate conda environments to avoid CUDA and dependency conflicts:
+
+### DiffCT Environment for artifact simulation and CT data generation
 ```markdown
-git clone https://github.com/Zyew/DiTArtifactsRemoval.git
-cd DiTArtifactsRemoval
-# Install required packages
-pip install -r requirements.txt
+conda env create -f environment_diffct.yml
+conda activate diffct
+```
+### DiT Environment for training and inference of artifact removal models
+```markdown
+conda env create -f environment_dit.yml
+conda activate DiT
 ```
