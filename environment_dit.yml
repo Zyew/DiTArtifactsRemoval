@@ -1,0 +1,25 @@
+name: DiT
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pytorch=2.4
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=11.8
+  - cudatoolkit=11.8
+  - pip
+  - pip:
+      - diffusers
+      - accelerate
+      - transformers
+      - monai
+      - monai-generative
+      - pytorch-lightning
+      - tqdm
+      - einops
+      - matplotlib
+      - scikit-image
+      - opencv-python
