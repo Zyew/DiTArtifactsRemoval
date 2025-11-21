@@ -5,7 +5,6 @@ This project implements **CT artifact removal** using a **Diffusion Transformer 
 
 - **Artifact Simulation**: Generate artifact images for different anatomical regions (brain, pancreas).
 - **Latent Conditional Diffusion**: Perform conditional diffusion in the latent space for more efficient and robust artifact removal.
-- **Inference Utilities**: Easy-to-use scripts for visualization, evaluation, and batch inference.
 
 
 ## Code Structure
